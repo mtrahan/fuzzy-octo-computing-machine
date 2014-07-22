@@ -1,0 +1,11 @@
+<%= form_for([@article, @article.comments.build]) do |f| %>
+<div class="form-group">
+    <%= f.label :Name %>
+    <%= f.text_field :commenter, :class => 'form-control' %>
+</div>
+<div class="form-group">
+    <%= f.label :Comment %><br>
+    <%= f.text_area :body, :class => 'form-control' %>
+</div>
+<button type="submit" class="btn btn-default">Submit</button>
+<% end %>

@@ -1,0 +1,10 @@
+<blockquote>
+    <p><%= comment.body %></p>
+    <footer><%= comment.commenter %></footer>
+</blockquote>
+
+<p>
+  <%= link_to 'Delete', [comment.article, comment],
+    method: :delete,
+    data: { confirm: 'Are you sure?' } %>
+</p>

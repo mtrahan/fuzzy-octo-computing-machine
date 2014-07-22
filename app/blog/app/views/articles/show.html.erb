@@ -1,0 +1,44 @@
+<div class="row page-header">
+    <div class="col-md-10">
+          <h1><%= link_to "< " + @article.title, articles_path %></h1>
+    </div>
+    <div class="col-md-2">
+            &nbsp;</br>
+            <%= link_to 'Edit', edit_article_path(@article), :class => 'btn btn-success btn-sm' %>
+            <%= link_to 'Destroy', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-sm' %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="lead">
+        <%= @article.text %>
+        </p>
+    </div>
+</div>
+
+<% if @article.comments.length > 0 %>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Comments</h3>
+        <%= render @article.comments %>
+    </div>
+</div>
+<% end %>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Add a comment:</h3>
+        <%= render "comments/form" %>
+    </div>
+    <div class="col-md-8">
+        &nbsp;
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        &nbsp;
+    </div>
+</div>
+

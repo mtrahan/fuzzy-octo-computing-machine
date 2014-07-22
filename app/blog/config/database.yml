@@ -1,5 +1,5 @@
 # SQLite version 3.x
-#   gem install sqlite3
+#   gem install sqlite3G
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
@@ -21,4 +21,4 @@ test:
   database: db/test.sqlite3
 
 production:
-  url: 
+  url: postgresql://blog_user:blog_password@blog.cw1zpjs4feww.us-east-1.rds.amazonaws.com:5432/blog 

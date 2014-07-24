@@ -33,7 +33,7 @@
               [
                 "#!/bin/bash -v \n",
                 "export HOME=/home/ubuntu \n",
-                "cd /home/ubuntu/fuzzy-octo-computing-machine/app/blog \n",
+                "cd /home/ubuntu/fuzzy-octo-computing-machine/blog \n",
                 "export RAILS_ENV=production \n",
                 "export SECRET_KEY_BASE=`bin/rake secret` \n",
                 "nohup bin/rails server & \n"

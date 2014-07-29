@@ -1,4 +1,4 @@
-# Getting Started
+## Getting Started
 ### Create new AWS Account
 
 1. Go to http://aws.amazon.com
@@ -31,11 +31,18 @@ Reference: http://docs.aws.amazon.com/cli/latest/userguide/installing.html
 2. `aws configure` using your IAM credentials and us-east-1 as default region
 3. Test `aws ec2 describe-instances`
 
-# Launch Instance
+## Launch Instance
 
-1. Instance
-2. Security Groups
-3. KeyPair
+1. Go to EC2 in the [AWS Console](https://console.aws.amazon.com)
+2. Click _Launch Instance_
+3. Select Ubuntu
+4. Choose t2.micro (free tier)
+5. Skip through next two screens to Step 5: Tag Instance
+6. Give your instance a name, Click next
+7. Create a new Security Group, name it blog, and keep the default SSH from anywhere rule for now
+    * This will show a warning about SSH being accessible to the world.  This is fine for now but can be fixed if you choose "My IP" instead of "Anywhere".
+8. Click Next and Launch
+9. It will ask you about a KeyPair, this time create a new one.  It will have you download the private key to your computer.
 
 # Login
 

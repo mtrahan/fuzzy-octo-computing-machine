@@ -65,3 +65,34 @@ At this point your instance will be created.  You will need to wait for it to be
     * This will not work because the security group needs to have a rule added to open port 3000.
         1. Go to EC2 -> Security Groups
         2. Click on the _blog_ security group and add an **Incoming** rule to open a **TCP** port **3000** to all IPs **0.0.0.0/0**
+
+## Use RDS Postgres Instead of Local Database
+
+## Create Image
+
+1. Go to EC2 Instances page
+2. Select instance
+3. Click _Actions_ -> _Create Image_
+4. Go to EC2 AMI page to see status of image
+
+## Launch New Image using Image and CloudFormation
+
+1. Clone git repo to local computer: `git clone https://github.com/mtrahan/fuzzy-octo-computing-machine.git`
+2. Go to CloudFormation tab and click *Create New Stack*
+3. Add a Name
+4. Upload template to Amazon S3, choose the file __instance-only.template__ from the repo you just cloned
+5. Click Next
+6. Fill in the AmiId and the KeyPair name.  The AmiId will be the ID for the image created in the last section and the KeyPair name will be the one you created when you launched your first instance.
+7. Add a **Name** tag to your instances.
+8. Launch stack
+
+When the instance comes up, you will have to ssh on the instance and manually start the app by setting the RAILS_ENV and the SECRET_KEY_BASE then running `bin/rails server`.
+
+## Launch New Image and Automatically Start App on Instance Start Up
+
+Same as *Launch New Image using Image and CloudFormation* but instead use the __instance-userdata.template__
+
+## Launch Stack with Elastic Loadbalancer and AutoScaling Group
+
+Same as *Launch New Image using Image and CloudFormation* but instead use the __elb-asg.template__
+

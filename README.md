@@ -52,6 +52,7 @@ At this point your instance will be created.  You will need to wait for it to be
 1. Go to the EC2 Instances page in the console and get the public DNS of the instance you launched.
 2. Use the public DNS and the key pair you created the instance with to ssh into the instance.
     * For example: `ssh -i si.pem ubuntu@ec2-54-210-57-41.compute-1.amazonaws.com`
+    * Note: the private key file can only be readable by you. Run `chmod 400 si.pem`.
 3. Update the package manager: `sudo apt-get update`
 4. Install git: `sudo apt-get install git`
 5. Clone this repo: `git clone https://github.com/mtrahan/fuzzy-octo-computing-machine.git`

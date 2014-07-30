@@ -68,6 +68,35 @@ At this point your instance will be created.  You will need to wait for it to be
 
 ## Use RDS Postgres Instead of Local Database
 
+1. Go to RDS in AWS Console.
+2. Click **Launch a DB Instance**
+3. Choose **PostgreSQL**
+4. Pick **No, this instance is intended for use outside of production or under the RDS Free Usage Tier**
+5. Select the following:
+    * DB Instance Class: __db.t1.micro__
+    * Multi-AZ Deployment: __No__
+    * Allocated Storage: __5__
+    * DB Instance Identifier: __blog__
+    * Set username and password.  Remember these.
+6. On the next screen select the following:
+    * Publicly Accessible: __No__
+    * VPC Security Group(s): __blog__ (this is the same security group you created with your first instance)
+    * Database Name: __blog__
+    * Leave the rest with their default values
+7. Launch!
+8. Once the database is up and running, we need to open up the security group so our instances can call it.
+    1. Go to EC2 -> Security Groups
+    2. Click on __blog__ security group
+    3. Add rule for __TCP__ for port __5432__ but this time add the __blog__ security group as the source.  This only allows instances in that security group to make calls to this port.
+9. Get the endpoint for you DB from the RDS page.  It will look something like this: __blog.dw1zpjs4fexx.us-east-1.rds.amazonaws.com:5432__
+10. Back on your EC2 instance with your app running on it, add the database configuration to connect to your RDS instance.
+    1. In _config/database.yaml_, under production add `url: postgresql://blog:blogpassword@blog.cw1zpjs4feww.us-east-1.rds.amazonaws.com:5432/blog` but with your user/password and your connection string.
+11. Make sure `gem 'pg'` is in your GemFile and run `bundle install again`
+12. `export RAILS_ENV=production`
+13. ```export SECRET_KEY_BASE=`bin/rake secret` ```
+14. run `bin/rake db:migrate`
+15. `bin/rails server`
+
 ## Create Image
 
 1. Go to EC2 Instances page

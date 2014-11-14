@@ -21,4 +21,4 @@ test:
   database: db/test.sqlite3
 
 production:
-  url: postgresql://blog:blogpassword@blog.cw1zpjs4feww.us-east-1.rds.amazonaws.com:5432/blog
+  url: postgresql://demo:demopass@demo.caqyyuwq4pmj.us-east-1.rds.amazonaws.com:5432/blog

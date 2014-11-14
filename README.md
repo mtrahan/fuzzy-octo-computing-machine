@@ -57,7 +57,7 @@ At this point your instance will be created.  You will need to wait for it to be
 4. Install git: `sudo apt-get install git`
 5. Clone this repo: `git clone https://github.com/mtrahan/fuzzy-octo-computing-machine.git`
 6. Change directories to the repo: `cd fuzzy-octo-computing-machine`
-7. Run the setup-instances script to install all necessary ruby dependencies: `sudo ./setup-instances.sh`
+7. Run the setup-instances script to install all necessary ruby dependencies: `sudo ./setup-instance.sh`
 8. Change directories to the ruby app directory: `cd blog`
 9. Run `bundle install`
 10. Setup the local database: `bin/rake db:migrate`

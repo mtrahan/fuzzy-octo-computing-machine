@@ -25,7 +25,7 @@
         "SecurityGroups" : [ "admin" ],
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : { "Ref" : "AmiId" },
-        "InstanceType" : "t2.micro"
+        "InstanceType" : "m3.medium"
       }
     }
   },

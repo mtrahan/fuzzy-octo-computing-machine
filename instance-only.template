@@ -15,6 +15,14 @@
     "AmiId" : {
       "Description" : "The ami-id used to start up the instance",
       "Type" : "String"
+    },
+    "SubnetId" : {
+      "Description" : "VPC subnet id",
+      "Type" : "String"
+    },
+    "SecurityGroupId" : {
+      "Description" : "Security Group Id",
+      "Type" : "String"
     }
   },
 
@@ -22,10 +30,11 @@
     "Ec2Instance" : {
       "Type" : "AWS::EC2::Instance",
       "Properties" : {
-        "SecurityGroups" : [ "admin" ],
+        "SecurityGroupIds" : [ { "Ref" : "SecurityGroupId" } ],
         "KeyName" : { "Ref" : "KeyName" },
         "ImageId" : { "Ref" : "AmiId" },
-        "InstanceType" : "m3.medium"
+        "InstanceType" : "t2.micro",
+        "SubnetId" : { "Ref" : "SubnetId" }
       }
     }
   },

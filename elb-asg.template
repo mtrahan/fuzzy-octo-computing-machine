@@ -15,6 +15,18 @@
     "AmiId" : {
       "Description" : "The ami-id used to start up the instance",
       "Type" : "String"
+    },
+    "SubnetId" : {
+      "Description" : "VPC subnet id",
+      "Type" : "String"
+    },
+    "SecurityGroupId" : {
+      "Description" : "Security Group Id",
+      "Type" : "String"
+    },
+    "VpcId" : {
+      "Description" : "Security Group Id",
+      "Type" : "String"
     }
   },
 
@@ -22,7 +34,7 @@
     "WebServerGroup" : {
       "Type" : "AWS::AutoScaling::AutoScalingGroup",
       "Properties" : {
-        "AvailabilityZones" : [ "us-east-1b" ],
+        "VPCZoneIdentifier": [ { "Ref" : "SubnetId" }],
         "LaunchConfigurationName" : { "Ref" : "LaunchConfig" },
         "MinSize" : "2",
         "MaxSize" : "3",
@@ -35,8 +47,12 @@
       "Type" : "AWS::AutoScaling::LaunchConfiguration",
       "Properties" : {
         "ImageId" : { "Ref" : "AmiId" },
-        "SecurityGroups" : [ { "Ref" : "InstanceSecurityGroup" }, "admin" ],
-        "InstanceType" : "m3.medium",
+        "ImageId" : { "Ref" : "AmiId" },
+        "SecurityGroups" : [
+          { "Ref" : "SecurityGroupId" },
+          { "Fn::GetAtt" : [  "InstanceSecurityGroup", "GroupId" ] }
+        ],
+        "InstanceType" : "t2.micro",
         "UserData" : {
           "Fn::Base64": {
             "Fn::Join": [
@@ -58,7 +74,7 @@
     "ElasticLoadBalancer" : {
       "Type" : "AWS::ElasticLoadBalancing::LoadBalancer",
       "Properties" : {
-        "AvailabilityZones" : [ "us-east-1b" ],
+        "Subnets": [ { "Ref" : "SubnetId" }],
         "Listeners" : [ {
           "LoadBalancerPort" : "80",
           "InstancePort" : "3000",
@@ -78,6 +94,7 @@
       "Type" : "AWS::EC2::SecurityGroup",
       "Properties" : {
         "GroupDescription" : "Enable SSH access and HTTP access on the inbound port",
+        "VpcId": { "Ref" : "VpcId" },
         "SecurityGroupIngress" : [ {
           "IpProtocol" : "tcp",
           "FromPort" : "3000",

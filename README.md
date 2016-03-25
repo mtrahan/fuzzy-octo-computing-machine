@@ -74,7 +74,7 @@ At this point your instance will be created.  You will need to wait for it to be
 3. Choose **PostgreSQL**
 4. Pick **No, this instance is intended for use outside of production or under the RDS Free Usage Tier**
 5. Select the following:
-    * DB Instance Class: __db.t1.micro__
+    * DB Instance Class: __db.t2.micro__
     * Multi-AZ Deployment: __No__
     * Allocated Storage: __5__
     * DB Instance Identifier: __blog__
